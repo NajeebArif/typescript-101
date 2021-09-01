@@ -26,3 +26,41 @@ let yourTax = getTax(5000);
 console.log(yourTax);
 
 console.log('-------------------------------------------------------------------------------------------')
+
+//Type Union
+
+function padLeft(value: string, padding: any): string{
+    if(typeof padding === 'number'){
+        return Array(padding+1).join(" ") + value;
+    }
+    if(typeof padding === 'string'){
+        return padding + value;
+    }
+    throw new Error(`Expected string or number, got '${padding}'.`);
+}
+
+function testPaddingWithAny(){
+    console.log(padLeft("Hello World",4))
+    console.log(padLeft("Hello World","John says "))
+    try{
+        console.log(padLeft("Hello World",true))
+    }catch(err: any){
+        console.error('Bad things happening.');
+    }
+}
+
+testPaddingWithAny();
+
+function padLeftUnion(value: string, padding: string | number): string {
+    if(typeof padding === 'number'){
+        return Array(padding+1).join(" ") + value;
+    }else{
+        return padding + value;
+    }
+}
+
+console.log(padLeftUnion("Hello",4))
+console.log(padLeftUnion("Hello","NJ says "))
+
+
+console.log('-------------------------------------------------------------------------------------------')
