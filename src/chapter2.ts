@@ -73,7 +73,7 @@ type Pound = number;
 type Person = {
     name: string,
     height: Foot,
-    weight: Pound
+    weight?: Pound
 }
 
 let person: Person = {
@@ -82,7 +82,15 @@ let person: Person = {
     weight: 70
 }
 
+const person2: Person = {
+    name: 'Arif',
+    height: 5.7
+}
+
+
+
 console.log(`Created a custom 'type' Person: ${JSON.stringify(person)} which uses type aliases.`)
+console.log(`Created a custom 'type' Person: ${JSON.stringify(person2)} which uses type aliases.`)
 
 console.log('-------------------------------------------------------------------------------------------')
 
