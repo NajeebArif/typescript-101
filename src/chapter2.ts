@@ -94,3 +94,26 @@ console.log(`Created a custom 'type' Person: ${JSON.stringify(person2)} which us
 
 console.log('-------------------------------------------------------------------------------------------')
 
+//create and use interface
+
+// types declared using interfaces can not be used in unions and intersection
+// instanceof check will lead to compilation error with interfaces
+// intercaes types can not be used with conditional types (more on chapter5.js)
+
+interface Employee{
+    firstName: string,
+    lastName: string,
+    doj: Date
+}
+
+const saveEmployee = (employee: Employee) =>{
+    console.log(`Saving ${JSON.stringify(employee)} to Database`)
+}
+
+const emp1: Employee = {
+    firstName: 'john',
+    lastName: 'doe',
+    doj: new Date()
+}
+
+saveEmployee(emp1)
