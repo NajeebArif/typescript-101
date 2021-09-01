@@ -64,3 +64,25 @@ console.log(padLeftUnion("Hello","NJ says "))
 
 
 console.log('-------------------------------------------------------------------------------------------')
+
+//Using the type keyword
+
+type Foot = number;
+type Pound = number;
+
+type Person = {
+    name: string,
+    height: Foot,
+    weight: Pound
+}
+
+let person: Person = {
+    name: 'Najeeb',
+    height: 5.7,
+    weight: 70
+}
+
+console.log(`Created a custom 'type' Person: ${JSON.stringify(person)} which uses type aliases.`)
+
+console.log('-------------------------------------------------------------------------------------------')
+
