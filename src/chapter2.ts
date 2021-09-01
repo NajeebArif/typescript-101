@@ -178,9 +178,9 @@ dept2 = JSON.parse('{"name":"OAL"}')
 //the below type guard returns true if object has a property name in it.
 const isDepartment = (object: any): object is Department => "name" in object;
 
-if(isDepartment(dept2)) {
+if (isDepartment(dept2)) {
     console.log(dept2.name)
-}else{
+} else {
     console.log('Dep2 is not a department')
 }
 
@@ -189,7 +189,7 @@ if a falsy object is passed to isDepartment method then it will fail
 to avoid that use the below variant
 */
 
-const isDepartmentTruthy = (object: any): object is Department => !! object && "name" in object;
+const isDepartmentTruthy = (object: any): object is Department => !!object && "name" in object;
 
 type BetterDepartment = {
     discriminator: 'BetterDepartment',
@@ -199,3 +199,14 @@ type BetterDepartment = {
 const isBetterDepartment = (object: any): object is BetterDepartment => !!object && object.discriminator === 'BetterDepartment'
 
 console.log('-------------------------------------------------------------------------------------------')
+
+// in Type guard
+
+interface A { a: number }
+interface B { b: string }
+
+function foo(x: A | B): number | string{
+    if("a" in x)
+        return x.a;
+    return x.b
+}
