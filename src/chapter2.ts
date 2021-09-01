@@ -191,4 +191,11 @@ to avoid that use the below variant
 
 const isDepartmentTruthy = (object: any): object is Department => !! object && "name" in object;
 
+type BetterDepartment = {
+    discriminator: 'BetterDepartment',
+    name: string
+}
+
+const isBetterDepartment = (object: any): object is BetterDepartment => !!object && object.discriminator === 'BetterDepartment'
+
 console.log('-------------------------------------------------------------------------------------------')
