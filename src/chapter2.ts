@@ -138,7 +138,7 @@ interface Circle {
 type Shape = Rectangle | Circle;
 
 const area = (shape: Shape): number => {
-    switch(shape.kind){
+    switch (shape.kind) {
         case "circle": return Math.PI * shape.radius ** 2;
         case "rectangle": return shape.height * shape.width;
     }
@@ -151,7 +151,7 @@ const myRect: Rectangle = {
 }
 console.log(`Area of rectangle is ${area(myRect)}`)
 
-const myCircle: Circle= {
+const myCircle: Circle = {
     kind: "circle",
     radius: 5
 }
@@ -159,3 +159,36 @@ console.log(`Area of circle is ${area(myCircle)}`)
 
 console.log('-------------------------------------------------------------------------------------------')
 
+// User defined type guards
+
+type Department = {
+    name: string
+}
+
+let dept1: any
+
+dept1 = JSON.parse('{"naame":"OAL"}')
+
+console.log(dept1);
+
+let dept2: unknown;
+
+dept2 = JSON.parse('{"name":"OAL"}')
+
+//the below type guard returns true if object has a property name in it.
+const isDepartment = (object: any): object is Department => "name" in object;
+
+if(isDepartment(dept2)) {
+    console.log(dept2.name)
+}else{
+    console.log('Dep2 is not a department')
+}
+
+/* 
+if a falsy object is passed to isDepartment method then it will fail 
+to avoid that use the below variant
+*/
+
+const isDepartmentTruthy = (object: any): object is Department => !! object && "name" in object;
+
+console.log('-------------------------------------------------------------------------------------------')
