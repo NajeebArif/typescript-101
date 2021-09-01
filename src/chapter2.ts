@@ -1,8 +1,9 @@
 
 console.log('-------------------------------------------------------------------------------------------')
-
-// to use Symbol as primitive, 
-// es2015 needs to be added to the 'lib' key of compiler options in tsconfig.json
+/* 
+    to use Symbol as primitive, 
+    es2015 needs to be added to the 'lib' key of compiler options in tsconfig.json 
+*/
 const ord = Symbol('orderId')
 
 const myOrder = {
@@ -17,7 +18,7 @@ console.log('-------------------------------------------------------------------
 //Type inference in typescript
 const age = 25;
 
-function getTax(income: number) : number {
+function getTax(income: number): number {
     return income * 0.15;
 }
 
@@ -29,22 +30,22 @@ console.log('-------------------------------------------------------------------
 
 //Type Union
 
-function padLeft(value: string, padding: any): string{
-    if(typeof padding === 'number'){
-        return Array(padding+1).join(" ") + value;
+function padLeft(value: string, padding: any): string {
+    if (typeof padding === 'number') {
+        return Array(padding + 1).join(" ") + value;
     }
-    if(typeof padding === 'string'){
+    if (typeof padding === 'string') {
         return padding + value;
     }
     throw new Error(`Expected string or number, got '${padding}'.`);
 }
 
-function testPaddingWithAny(){
-    console.log(padLeft("Hello World",4))
-    console.log(padLeft("Hello World","John says "))
-    try{
-        console.log(padLeft("Hello World",true))
-    }catch(err: any){
+function testPaddingWithAny() {
+    console.log(padLeft("Hello World", 4))
+    console.log(padLeft("Hello World", "John says "))
+    try {
+        console.log(padLeft("Hello World", true))
+    } catch (err: any) {
         console.error('Bad things happening.');
     }
 }
@@ -52,15 +53,15 @@ function testPaddingWithAny(){
 testPaddingWithAny();
 
 function padLeftUnion(value: string, padding: string | number): string {
-    if(typeof padding === 'number'){
-        return Array(padding+1).join(" ") + value;
-    }else{
+    if (typeof padding === 'number') {
+        return Array(padding + 1).join(" ") + value;
+    } else {
         return padding + value;
     }
 }
 
-console.log(padLeftUnion("Hello",4))
-console.log(padLeftUnion("Hello","NJ says "))
+console.log(padLeftUnion("Hello", 4))
+console.log(padLeftUnion("Hello", "NJ says "))
 
 
 console.log('-------------------------------------------------------------------------------------------')
@@ -96,17 +97,13 @@ console.log('-------------------------------------------------------------------
 
 //create and use interface
 
-// types declared using interfaces can not be used in unions and intersection
-// instanceof check will lead to compilation error with interfaces
-// intercaes types can not be used with conditional types (more on chapter5.js)
-
-interface Employee{
+interface Employee {
     firstName: string,
     lastName: string,
     doj: Date
 }
 
-const saveEmployee = (employee: Employee) =>{
+const saveEmployee = (employee: Employee) => {
     console.log(`Saving ${JSON.stringify(employee)} to Database`)
 }
 
@@ -117,3 +114,48 @@ const emp1: Employee = {
 }
 
 saveEmployee(emp1)
+
+console.log('-------------------------------------------------------------------------------------------')
+
+// Union of custom types
+
+/*
+Descriminated unions include type members that have a common  property- the discriminant.
+Depending upon the value of discriminant different actions are performed.
+*/
+
+interface Rectangle {
+    kind: "rectangle",
+    width: number,
+    height: number
+}
+
+interface Circle {
+    kind: "circle",
+    radius: number
+}
+
+type Shape = Rectangle | Circle;
+
+const area = (shape: Shape): number => {
+    switch(shape.kind){
+        case "circle": return Math.PI * shape.radius ** 2;
+        case "rectangle": return shape.height * shape.width;
+    }
+}
+
+const myRect: Rectangle = {
+    kind: "rectangle",
+    width: 10,
+    height: 5
+}
+console.log(`Area of rectangle is ${area(myRect)}`)
+
+const myCircle: Circle= {
+    kind: "circle",
+    radius: 5
+}
+console.log(`Area of circle is ${area(myCircle)}`)
+
+console.log('-------------------------------------------------------------------------------------------')
+
