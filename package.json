@@ -6,11 +6,17 @@
   "scripts": {
     "dev": "tsc && node ./dist/%npm_config_1%",
     "compile": "tsc",
-    "boot": "node ./dist/%npm_config_1%"
+    "boot": "node ./dist/%npm_config_1%",
+    "bundleup": "webpack-cli"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^4.1.2",
     "typescript": "^4.4.2"
+  },
+  "devDependencies": {
+    "webpack": "^5.52.0",
+    "webpack-cli": "^4.8.0"
   }
 }
