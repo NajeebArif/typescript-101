@@ -7,7 +7,8 @@
     "dev": "tsc && node ./dist/%npm_config_1%",
     "compile": "tsc",
     "boot": "node ./dist/%npm_config_1%",
-    "bundleup": "webpack-cli"
+    "bundleup": "webpack-cli --watch",
+    "start": "webpack-dev-server"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +18,7 @@
   },
   "devDependencies": {
     "webpack": "^5.52.0",
-    "webpack-cli": "^4.8.0"
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.1.0"
   }
 }
