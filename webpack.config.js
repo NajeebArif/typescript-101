@@ -1,4 +1,4 @@
-const {resolve}=require('path');
+const {resolve} = require('path');
 
 module.exports = {
     entry: './src/index.js',
@@ -7,5 +7,12 @@ module.exports = {
         path: resolve(__dirname,'dist')
     },
     target: 'node',
-    mode: 'production'
+    mode: 'development',
+    devServer: {
+        static: {
+            directory: resolve(__dirname, 'public'),
+        },
+        compress: true,
+        port: 9000,
+    }
 }
