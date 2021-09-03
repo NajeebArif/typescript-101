@@ -4,3 +4,6 @@ const bgGreen = chalk.black.bgGreenBright
 const message: string = "Bundled with Webpack"
 console.log(bgGreen('Hello World'))
 console.log(bgGreen(message))
+
+
+// https://webpack.js.org/configuration/configuration-languages/
