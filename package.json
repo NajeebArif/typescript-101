@@ -7,7 +7,8 @@
     "dev": "tsc && node ./dist/%npm_config_1%",
     "compile": "tsc",
     "boot": "node ./dist/%npm_config_1%",
-    "bundleup": "webpack-cli --watch",
+    "bundleup-watch": "webpack-cli --watch",
+    "bundleup": "webpack-cli",
     "start": "webpack-dev-server"
   },
   "author": "",
